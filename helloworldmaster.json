@@ -11,7 +11,7 @@
             "properties": {
                 "mode": "incremental",
                 "templateLink": {
-                    "uri": "[uri(deployment().properties.templateLink.uri, 'helloworld.json')]",
+                    "uri": "https://raw.githubusercontent.com/downtrev/arm-linked-templates/master/helloworld.json",
                     "contentVersion": "1.0.0.0"
                 }
             }
