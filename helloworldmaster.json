@@ -14,9 +14,6 @@
                     "uri": "[uri(deployment().properties.templateLink.uri, 'helloworld.json')]",
                     "contentVersion": "1.0.0.0"
                 }
-//                "parametersLink": {
-//                    "uri":"https://
-//                }
             }
         }
     ],
