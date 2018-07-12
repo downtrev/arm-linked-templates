@@ -27,7 +27,7 @@
                     "contentVersion": "1.0.0.0"
                 },
                 "parametersLink": {
-                    "uri":"https://raw.githubusercontent.com/downtrev/arm-linked-templates/master/mobileapp.json",
+                    "uri":"https://raw.githubusercontent.com/downtrev/arm-linked-templates/master/mobileapp.parameters.json",
                     "contentVersion": "1.0.0.0"
                 }
             }
