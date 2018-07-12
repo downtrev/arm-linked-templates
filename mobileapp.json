@@ -1,0 +1,87 @@
+{
+  "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {
+    "appName": {
+      "type": "string",
+      "metadata": {
+        "description": "The name of the mobile app that you wish to create."
+      }
+    },
+    "hostingPlanSettings": {
+      "type": "object",
+      "defaultValue": {
+        "tier": "Standard",
+        "skuName": "S1",
+        "capacity": "0"
+      },
+      "metadata": {
+        "description": "The settings of the existing hosting plan."
+      }
+    },
+    "location": {
+      "type": "string",
+      "defaultValue": "[resourceGroup().location]",
+      "metadata": {
+        "description": "Location for all resources."
+      }
+    }
+  },
+  "variables": {
+    "uniqueAppName": "[concat(parameters('appName'), '-', uniqueString(resourceGroup().id))]",
+    "hostingPlanName": "[concat(variables('uniqueAppName'), '-plan')]"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Web/serverfarms",
+      "apiVersion": "2015-08-01",
+      "name": "[variables('hostingPlanName')]",
+      "location": "[parameters('location')]",
+      "tags": {
+        "Dept": "IT",
+        "Environment": "Development",
+        "Version": "${BUILD_NUMBER}"
+      },
+      "sku": {
+        "name": "[parameters('hostingPlanSettings').skuName]",
+        "tier": "[parameters('hostingPlanSettings').tier]",
+        "capacity": "[parameters('hostingPlanSettings').capacity]"
+      },
+      "properties": {
+        "numberOfWorkers": 1
+      }
+    },
+    {
+      "apiVersion": "2015-08-01",
+      "type": "Microsoft.Web/sites",
+      "name": "[variables('uniqueAppName')]",
+      "location": "[parameters('location')]",
+      "tags": {
+        "Dept": "IT",
+        "Environment": "Development",
+        "Version": "${BUILD_NUMBER}"
+      },
+      "kind": "mobileapp",
+      "properties": {
+        "name": "[variables('uniqueAppName')]",
+        "serverFarmId": "[resourceId('Microsoft.Web/serverfarms', variables('hostingPlanName'))]"
+      },
+      "dependsOn": [
+        "[variables('hostingPlanName')]"
+      ],
+      "resources": [
+        {
+          "apiVersion": "2015-08-01",
+          "name": "appsettings",
+          "type": "config",
+          "dependsOn": [
+            "[variables('uniqueAppName')]"
+          ],
+          "properties": {
+            "MS_MobileServiceName": "[variables('uniqueAppName')]"
+          }
+        }
+      ]
+    }
+  ]
+}
