@@ -31,6 +31,22 @@
                     "contentVersion": "1.0.0.0"
                 }
             }
+        },
+        {
+            "apiVersion": "2017-05-10",
+            "name": "mobileappLink",
+            "type": "Microsoft.Resources/deployments",
+            "properties": {
+                "mode": "incremental",
+                "templateLink": {
+                    "uri": "https://raw.githubusercontent.com/downtrev/arm-linked-templates/master/sqldb.json",
+                    "contentVersion": "1.0.0.0"
+                },
+                "parametersLink": {
+                    "uri":"https://raw.githubusercontent.com/downtrev/arm-linked-templates/master/sqldb.parameters.json",
+                    "contentVersion": "1.0.0.0"
+                }
+            }
         }
     ],
     "outputs": {
