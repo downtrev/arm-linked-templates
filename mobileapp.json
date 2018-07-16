@@ -77,9 +77,6 @@
           "dependsOn": [
             "[variables('uniqueAppName')]"
           ],
-          "properties": {
-            "MS_MobileServiceName": "[variables('uniqueAppName')]"
-          }
         }
       ]
     }
