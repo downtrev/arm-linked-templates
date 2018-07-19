@@ -107,13 +107,7 @@
             "startIpAddress": "0.0.0.0"
           }
         }
-      ],
-      "outputs": {
-        "myResourceName" : {
-            "type" : "string",
-            "value": "[reference(resourceTemplate).name)]"
-        }
-    }
+      ]
     }
   ]
 }

@@ -86,13 +86,7 @@
           "properties": {
           }
         }
-      ],
-      "outputs": {
-        "resourceName": {
-          "value": "[reference(variables('uniqueAppName'))]",
-          "type" : "string"
-        }
-      }
+      ]
     }
   ],
   "outputs": {
