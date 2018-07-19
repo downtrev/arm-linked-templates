@@ -49,12 +49,6 @@
       },
       "properties": {
         "numberOfWorkers": 1
-      },
-      "outputs": {
-        "resourceName": {
-          "value": "[reference('appName')]",
-          "type" : "string"
-        }
       }
     },
     {
