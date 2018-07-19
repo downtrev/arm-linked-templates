@@ -85,7 +85,7 @@
   ],
   "outputs": {
     "resourceName": {
-      "value": "[reference(variables('uniqueAppName'))]",
+      "value": "APS Safety",
       "type" : "string"
     }
   }
