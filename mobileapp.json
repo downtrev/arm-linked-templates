@@ -83,7 +83,7 @@
       ],
       "outputs": {
         "resourceName": {
-          "value": "[reference(variables('uniqueAppName')).name]",
+          "value": "[reference(variables('uniqueAppName'))]",
           "type" : "string"
         }
       }
