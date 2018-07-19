@@ -80,7 +80,13 @@
           "properties": {
           }
         }
-      ]
+      ],
+      "outputs": {
+        "resourceName": {
+          "value": "[reference('appName').name]",
+          "type" : "string"
+        }
+      }
     }
   ]
 }
