@@ -1,49 +1,52 @@
 {
-  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
-  "contentVersion": "1.0.0.0",
-  "parameters": {
-    "accountName": {
-      "type": "string"
+    "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+      "accountName": {
+        "type": "string"
+      },
+      "containerName": {
+        "type": "string"
+      }
     },
-    "containerName": {
-      "type": "string"
-    }
-  },
-  "variables": {
-    "accountName": "[concat(parameters('accountName')]",
-    "containerName": "[concat(parameters('containerName')]"
-  },
-  "resources": [
-    {
-      "type": "Microsoft.Storage/storageAccounts",
-      "name": "[variables('accountName')]",
-      "apiVersion": "2018-02-01",
-      "location": "westcentralus",
-      "kind": "BlobStorage",
-      "sku": {
-        "name": "Standard_LRS",
-        "tier": "Standard"
-      },
-      "tags": {
-        "Environment": "Development"
-      },
-      "dependsOn": [],
-      "properties": {
-        "accessTier": "Hot"
-      },
-      "resources": [
-        {
-          "type": "blobServices/containers",
-          "apiVersion": "2018-03-01-preview",
-          "name": "[concat('default/', variables('containerName'))]",
-          "dependsOn": [
-            "[variables('accountName')]"
-          ],
-          "properties": {
-            "publicAccess": "container"
+    "variables": {
+      "accountName": "[concat(parameters('accountName')]",
+      "containerName": "[concat(parameters('containerName')]"
+    },
+    "resources": [
+      {
+        "type": "Microsoft.Storage/storageAccounts",
+        "name": "[variables('accountName')]",
+        "apiVersion": "2018-02-01",
+        "location": "westcentralus",
+        "kind": "BlobStorage",
+        "sku": {
+          "name": "Standard_LRS",
+          "tier": "Standard"
+        },
+        "tags": {
+          "Environment": "Development"
+        },
+        "dependsOn": [],
+        "properties": {
+          "accessTier": "Hot"
+        },
+        "resources": [
+          {
+            "type": "blobServices/containers",
+            "apiVersion": "2018-03-01-preview",
+            "name": "[concat('default/', variables('containerName'))]",
+            "dependsOn": [
+              "[variables('accountName')]"
+            ],
+            "properties": {
+              "publicAccess": "container"
+            },
+            "tags": {
+                "Environment": "Development"
+              }
           }
-        }
-      ]
-    }
-  ]
-}
+        ]
+      }
+    ]
+  }
