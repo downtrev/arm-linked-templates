@@ -24,7 +24,9 @@
         "name": "Standard_LRS",
         "tier": "Standard"
       },
-      "tags": {'ENV[=nonprod]'},
+      "tags": {
+        "ENV": "nonprod"
+      },
       "dependsOn": [],
       "properties": {
         "accessTier": "Hot"
