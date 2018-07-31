@@ -1,0 +1,40 @@
+{
+  "$schema": "http://schema.management.azure.com/schemas/2014-04-01-preview/deploymentTemplate.json#",
+  "contentVersion": "1.0.0.0",
+  "parameters": {},
+  "variables": {
+    "accountName": "vaz01storage",
+    "containerName": "vaz01armtemplates"
+  },
+  "resources": [
+    {
+      "type": "Microsoft.Storage/storageAccounts",
+      "name": "[variables('accountName')]",
+      "apiVersion": "2018-02-01",
+      "location": "westcentralus",
+      "kind": "BlobStorage",
+      "sku": {
+        "name": "Standard_LRS",
+        "tier": "Standard"
+      },
+      "tags": {'ENV[=nonprod]'},
+      "dependsOn": [],
+      "properties": {
+        "accessTier": "Hot"
+      },
+      "resources": [
+        {
+          "type": "blobServices/containers",
+          "apiVersion": "2018-03-01-preview",
+          "name": "[concat('default/', variables('containerName'))]",
+          "dependsOn": [
+            "[variables('accountName')]"
+          ],
+          "properties": {
+            "publicAccess": "container"
+          }
+        }
+      ]
+    }
+  ]
+}
