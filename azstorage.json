@@ -10,8 +10,8 @@
       }
     },
     "variables": {
-      "accountName": "[concat(parameters('accountName')]",
-      "containerName": "[concat(parameters('containerName')]"
+      "accountName": "[concat(parameters('accountName'))]",
+      "containerName": "[concat(parameters('containerName'))]"
     },
     "resources": [
       {
